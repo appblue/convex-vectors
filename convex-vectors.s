@@ -51,7 +51,7 @@ start:
 ;* main program in the supervisor mode
 ;***********************************************
 begin:	
-	lea		$dff000,a6
+	lea	$dff000,a6
 	move.w	$1c(a6),save1
 	move.w	$02(a6),save2
 	move.w	$1e(a6),save3
@@ -118,7 +118,7 @@ begin:
 
 exit:	
 	move.l	stack(pc),a7
-	lea		$dff000,a6
+	lea	$dff000,a6
 	bsr.w	waitblit
 	move.l	save_irq(pc),$6c.w
 	move.w	#$7fff,$9a(a6)
@@ -127,12 +127,12 @@ exit:
 	move.w	save3(pc),$9c(a6)
 	move.w	save2(pc),$96(a6)
 	move.w	save1(pc),$9a(a6)
-	lea		grname(pc),a1
+	lea	grname(pc),a1
 	moveq	#0,d0
 	move.l	$4.w,a6
-	jsr		openlibrary(a6)
+	jsr	openlibrary(a6)
 	move.l	d0,a6
-	lea		$dff000,a5
+	lea	$dff000,a5
 	move.l	startlist(a6),$dff080
 	move.w	d0,$dff088
 	rte
@@ -190,7 +190,7 @@ wsp_y:		dc.w    0
 wsp_ay:		dc.w    0
 wsk_sin:	dc.l    sin2+32
 
-stack:	dc.l    0
+stack:		dc.l    0
 save_irq:	dc.l 0
 
 grname:	dc.b    "graphics.library",0
@@ -208,7 +208,7 @@ irq_routine:
 	move.l	wsk_sin(pc),a0
 	tst.w	(a0)
 	bpl.s	.ll
-	lea		sin2(pc),a0
+	lea	sin2(pc),a0
 .ll:	
 	move.w	(a0)+,d0
 	move.l	a0,wsk_sin
